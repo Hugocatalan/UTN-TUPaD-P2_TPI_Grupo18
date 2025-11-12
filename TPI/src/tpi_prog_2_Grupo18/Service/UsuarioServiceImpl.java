@@ -14,33 +14,34 @@ public class UsuarioServiceImpl {
     private final UsuarioDAO usuarioDAO;
 
     public UsuarioServiceImpl(Connection connection) {
-        this.usuarioDAO = new UsuarioDAO(); // tu DAO usa DatabaseConnection internamente
+        // El DAO usa DatabaseConnection internamente, así que no necesita el connection
+        this.usuarioDAO = new UsuarioDAO();
     }
 
-    // Crear usuario
+    // Crear usuario (adaptando al DAO)
     public void insertarUsuario(Usuario usuario, String password, String estado) throws Exception {
-        // Podés extender para crear credencial también
         usuario.setEstado(estado);
         usuario.setActivo(true);
         usuarioDAO.insertar(usuario);
+        // acá podrías también crear la credencial asociada con CredencialServiceImpl
     }
 
-    // Listar todos los usuarios
+    // Listar todos
     public List<Usuario> getAll() throws Exception {
         return usuarioDAO.getAll();
     }
 
-    // Buscar usuario por ID
+    // Buscar por ID
     public Usuario getUsuarioById(int id) throws Exception {
         return usuarioDAO.getById(id);
     }
 
-    // Actualizar usuario
+    // Actualizar
     public void actualizarUsuario(Usuario usuario) throws Exception {
         usuarioDAO.actualizar(usuario);
     }
 
-    // Eliminar usuario (baja lógica)
+    // Eliminar lógico
     public void eliminarUsuario(int id) throws Exception {
         usuarioDAO.eliminar(id);
     }
