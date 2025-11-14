@@ -19,10 +19,19 @@ public final class Config {
         }
     }
 
-    public static final String JDBC_URL = props.getProperty("jdbc.url");
-    public static final String DB_USER  = props.getProperty("jdbc.user");
-    public static final String DB_PASS  = props.getProperty("jdbc.pass");
-    public static final String DB_DRIVER = props.getProperty("db.driver");
+    // Valores con defaults si el archivo no los define
+    public static final String DB_HOST   = props.getProperty("db.host", "127.0.0.1");
+    public static final String DB_PORT   = props.getProperty("db.port", "3306");
+    public static final String DB_NAME   = props.getProperty("db.name", "tpi_prog_2");
+    public static final String DB_USER   = props.getProperty("jdbc.user", "root");
+    public static final String DB_PASS   = props.getProperty("jdbc.pass", "1234");
+    public static final String DB_DRIVER = props.getProperty("db.driver", "com.mysql.cj.jdbc.Driver");
+
+    // Construcción dinámica de la URL
+    public static final String JDBC_URL =
+        "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME
+        + "?useUnicode=true&characterEncoding=utf8&useSSL=false"
+        + "&allowPublicKeyRetrieval=true&serverTimezone=America/Argentina/Buenos_Aires";
 
     private Config() {}
 
