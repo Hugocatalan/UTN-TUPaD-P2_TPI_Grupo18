@@ -2,21 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Config/DatabaseConnection.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Config/TransactionManager.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Dao/CredencialDAO.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Main/MenuHandler.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Service/CredencialServiceImpl.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Dao/UsuarioDAO.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Models/Usuario.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Main/Main.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Main/MenuPantalla.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Main/TestConexion.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Main/MenuPrincipal.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Service/UsuarioServiceImpl.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Models/Credencial.java</file>
-            <file>file:/E:/UTN%20TPU/Segundo%20Cuatrimestre/Programacion%202/TPI/Repo/UTN-TUPaD-P2_TPI_Grupo18/TPI/src/tpi_prog_2_Grupo18/Models/Base.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

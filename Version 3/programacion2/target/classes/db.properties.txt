@@ -1,0 +1,7 @@
+# ==============================
+# CONFIGURACIÓN BASE DE DATOS
+# ==============================
+db.url=jdbc:mysql://localhost:3307/tpi_prog_2?useSSL=false&serverTimezone=UTC
+db.username=root
+db.password=1234
+db.driver=com.mysql.cj.jdbc.Driver
