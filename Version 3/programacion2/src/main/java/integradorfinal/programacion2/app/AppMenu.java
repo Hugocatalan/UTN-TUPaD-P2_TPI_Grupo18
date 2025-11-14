@@ -28,7 +28,7 @@ public class AppMenu {
         int op;
         do {
             mostrarMenu();
-            op = leerInt("Opción");
+            op = leerInt("Opcion");
             try {
                 switch (op) {
                     case 1 -> crearUsuarioSimple();
@@ -46,7 +46,7 @@ public class AppMenu {
                     case 13 -> actualizarPasswordSeguro();
                     case 14 -> loginUsuario();
                     case 0 -> System.out.println("👋 Saliendo...");
-                    default -> System.out.println("⚠️ Opción inválida.");
+                    default -> System.out.println("⚠️ Opción invalida.");
                 }
             } catch (Exception e) {
                 System.out.println("❌ Error: " + e.getMessage());
@@ -56,15 +56,15 @@ public class AppMenu {
     }
 
     private void mostrarMenu() {
-        System.out.println("========= MENÚ TFI (Usuario / Credencial) =========");
+        System.out.println("========= MENU TFI (Usuario / Credencial) =========");
         System.out.println(" 1) Crear Usuario (simple)");
         System.out.println(" 2) Listar Usuarios");
         System.out.println(" 3) Ver Usuario por ID");
         System.out.println(" 4) Buscar Usuario por USERNAME");
         System.out.println(" 5) Buscar Usuario por EMAIL");
         System.out.println(" 6) Actualizar Usuario");
-        System.out.println(" 7) Eliminar Usuario (baja lógica)");
-        System.out.println(" 8) Eliminar Usuario (baja física)");
+        System.out.println(" 7) Eliminar Usuario (baja logica)");
+        System.out.println(" 8) Eliminar Usuario (baja fisica)");
         System.out.println(" 9) Crear Usuario + Credencial (TRANSACCIÓN)");
         System.out.println("10) Crear Credencial para Usuario existente");
         System.out.println("11) Ver Credencial por ID");
@@ -151,13 +151,13 @@ public class AppMenu {
     }
 
     private void bajaLogicaUsuario() throws SQLException {
-        long id = leerLong("ID de usuario a dar de baja (lógica)");
+        long id = leerLong("ID de usuario a dar de baja (logica)");
         usuarioService.softDeleteById(id);
         System.out.println("🗂️ Usuario marcado como eliminado.");
     }
 
     private void bajaFisicaUsuario() throws SQLException {
-        long id = leerLong("ID de usuario a eliminar (físico)");
+        long id = leerLong("ID de usuario a eliminar (fisico)");
         usuarioService.deleteById(id);
         System.out.println("🗑️ Usuario eliminado físicamente.");
     }
@@ -178,7 +178,7 @@ public class AppMenu {
         CredencialAcceso c = new CredencialAcceso();
         c.setEliminado(false);
         c.setEstado(Estado.ACTIVO);
-        c.setHashPassword(leerStr("Password (se guardará el hash SHA-256)"));
+        c.setHashPassword(leerStr("Password (se guardara el hash SHA-256)"));
         c.setSalt("manual"); // si querés, después agregamos generación de salt
         c.setUltimoCambio(LocalDateTime.now());
         c.setRequiereReset(false);
@@ -188,7 +188,7 @@ public class AppMenu {
         u.setCredencial(c);
 
         Long nuevoId = usuarioService.createUsuarioConCredencial(u);
-        System.out.println("✅ Transacción OK. Usuario id=" + nuevoId + " + credencial creada.");
+        System.out.println("✅ Transaccion OK. Usuario id=" + nuevoId + " + credencial creada.");
     }
 
     // ===================== CREDENCIAL =====================
@@ -200,7 +200,7 @@ public class AppMenu {
         c.setUsuarioId(usuarioId);
         c.setEstado(Estado.ACTIVO);
         c.setUltimaSesion(null);
-        c.setHashPassword(leerStr("Password (se guardará el hash SHA-256)"));
+        c.setHashPassword(leerStr("Password (se guardara el hash SHA-256)"));
         c.setSalt("manual");
         c.setUltimoCambio(LocalDateTime.now());
         c.setRequiereReset(false);
@@ -265,7 +265,7 @@ public class AppMenu {
                 String s = sc.nextLine();
                 return Long.parseLong(s.trim());
             } catch (NumberFormatException e) {
-                System.out.println("Ingrese un número válido (long).");
+                System.out.println("Ingrese un número valido (long).");
             }
         }
     }
@@ -276,7 +276,7 @@ public class AppMenu {
             if (s.equals("ACTIVO") || s.equals("INACTIVO")) {
                 return Estado.valueOf(s);
             }
-            System.out.println("Valor inválido. Use ACTIVO o INACTIVO.");
+            System.out.println("Valor invalido. Use ACTIVO o INACTIVO.");
         }
     }
     private void loginUsuario() throws SQLException {
