@@ -274,7 +274,7 @@ Luego de crear la base de datos y configurar la conexion:
 Las credenciales: 12345
 
 
-## COMPILAR:
+## Compilar el Proyecto
 
 ### Windows
 mvn clean compile
@@ -322,6 +322,48 @@ src/main/resources y modificar el archivo "db.properties"
 > target\classes\db.properties
 
 Y modificar el archivo de la misma manera
+
+
+##Ejecución
+
+### Opción 1: Desde IDE
+```
+    Abrir proyecto en NetBeans
+    Ejecutar clase Main.Main
+```
+
+### Opción 2: Desde la linea de comandos
+
+Desde la carpeta root del proyecto se puede ejecutar el siguiente Script
+(Requiere Maven instalado)
+
+> COMPILAR Y EJECUTAR.bat
+
+O si ya lo compilaste, podes ejecutarlo solamente: 
+
+> EJECUTAR.BAT
+
+- Nota: Este script permite que funcione correctamente UTF - 8
+
+#### O desde la consola:
+
+En la carpeta root: 
+
+```
+mvn clean compile
+mvn clean package
+```
+
+luego moverse a la carpeta target
+
+> .\target
+
+y ejecutar:
+
+> java -jar tfi-prog2-1.0-shaded.jar
+
+- Nota: Esta version no corre correctamente con UTF - 8
+
 
 
 ## Uso del Sistema
