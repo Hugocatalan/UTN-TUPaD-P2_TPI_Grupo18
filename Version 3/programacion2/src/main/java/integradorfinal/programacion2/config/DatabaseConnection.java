@@ -13,16 +13,12 @@ public class DatabaseConnection {
         if (connection == null || connection.isClosed()) {
             try {
                 Class.forName(Config.DB_DRIVER);
-
-                System.out.println("🔍 Intentando conectar con:");
-                System.out.println("URL: " + Config.JDBC_URL);
-                System.out.println("USER: " + Config.DB_USER);
-
                 connection = DriverManager.getConnection(
                     Config.JDBC_URL,
                     Config.DB_USER,
                     Config.DB_PASS
                 );
+                // Solo se imprime cuando realmente se abre la conexión
                 System.out.println("✅ Conectado correctamente a la base de datos.");
             } catch (ClassNotFoundException e) {
                 System.err.println("❌ Driver JDBC no encontrado: " + e.getMessage());
