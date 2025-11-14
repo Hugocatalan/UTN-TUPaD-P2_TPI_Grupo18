@@ -276,7 +276,7 @@ Las credenciales: 12345
 
 ## COMPILAR:
 
-# Windows
+### Windows
 mvn clean compile
 mvn clean package
 
