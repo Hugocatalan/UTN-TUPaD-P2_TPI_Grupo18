@@ -1,8 +1,7 @@
 ## 💾 Proyecto Integrador Final – Programación 2 - UTN TUPAD 💾
 
-| |  |
-| :--- | :--- |
 | **Asignatura** | Programación 2 |
+| :--- | :--- |
 | **Carrera** | TUPAD - Tecnicatura Universitaria en Programación |
 | **Universidad** | UTN - Universidad Tecnológica Nacional |
 
