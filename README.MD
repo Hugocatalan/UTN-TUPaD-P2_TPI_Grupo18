@@ -36,7 +36,7 @@ Este proyecto busca simular un **sistema de autenticación básico**, aplicando 
 ## ⚙️ Requisitos del Sistema
 
 - **Java JDK 17** o superior.
-- **Maven 3.8+** para compilación y gestión de dependencias.
+- **Maven 3.9+** para compilación y gestión de dependencias.
 - **MySQL 8.0** como motor de base de datos.
 
 
@@ -346,4 +346,20 @@ Y modificar el archivo de la misma manera
 14) Login de Usuario (validar password)
  0) Salir
 ```
+
+## Operaciones Disponibles
+
+#### 1. Crear Usuario (simple)
+- Captura Username, Nombre, Apellido, Email y  Estado (ACTIVO / INACTIVO) 
+- Valida Username e Email unico
+
+**Ejemplo:**
+```
+Username: juan.perez
+Nombre: Juan
+Apellido: Perez
+Email: juan.perez@mail.com
+Estado (ACTIVO/INACTIVO): activo
+```
+
 
