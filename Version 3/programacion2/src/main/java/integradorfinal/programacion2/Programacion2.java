@@ -2,6 +2,7 @@ package integradorfinal.programacion2;
 
 import integradorfinal.programacion2.config.DatabaseConnection;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  
@@ -13,14 +14,19 @@ public class Programacion2 {
         System.out.println("🚀 Iniciando prueba de conexión...");
 
         try (Connection conn = DatabaseConnection.getConnection()) {
-            if (conn != null) {
+            if (conn != null && !conn.isClosed()) {
                 System.out.println("🎯 Conexión exitosa al esquema tpi_prog_2!");
             } else {
                 System.err.println("⚠️ No se pudo establecer la conexión.");
             }
+        } catch (SQLException e) {
+            // Mensaje amigable para el usuario
+            System.err.println("❌ No se pudo conectar con la base de datos. Verifique configuración o intente más tarde.");
+            // Detalle técnico para el desarrollador (puede ir a logs)
+            System.err.println("Detalles técnicos: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("❌ Error al conectar con la base de datos:");
-            e.printStackTrace();
+            System.err.println("❌ Ocurrió un error inesperado al intentar conectar.");
+            System.err.println("Detalles técnicos: " + e.getMessage());
         } finally {
             DatabaseConnection.closeConnection();
         }
