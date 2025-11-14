@@ -276,7 +276,7 @@ Las credenciales: 12345
 
 ## COMPILAR:
 
-# Windows
+### Windows
 mvn clean compile
 mvn clean package
 
@@ -286,7 +286,7 @@ mvn clean package
 Por defecto conecta a:
 
     Host: localhost:3306
-    Base de datos: dbtpi3
+    Base de datos: tpi_prog_2
     Usuario: root
     Contraseña: (vacía)
 
@@ -311,7 +311,7 @@ src/main/resources y modificar el archivo "db.properties"
     
     Usuario y contrase\u00f1a
     jdbc.user=root
-    jdbc.pass=1234
+    jdbc.pass=####
     
     Driver JDBC de MySQL
     db.driver=com.mysql.cj.jdbc.Driver
