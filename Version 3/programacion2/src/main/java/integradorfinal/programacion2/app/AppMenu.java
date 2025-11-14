@@ -59,6 +59,8 @@ public class AppMenu {
                         actualizarPasswordSeguro();
                     case 14 ->
                         loginUsuario();
+                    case 15 ->
+                        demoRollbackMenu();
                     case 0 ->
                         System.out.println("👋 Saliendo...");
                     default ->
@@ -87,6 +89,7 @@ public class AppMenu {
         System.out.println("12) Ver Datos de Credencial por ID (de la credencial)");
         System.out.println("13) Actualizar contraseña (stored procedure)");
         System.out.println("14) Login de Usuario (validar contraseña)");
+        System.out.println("15) PRUEBA DE ROLLBACK (Solo para desmotracion)");
         System.out.println(" 0) Salir");
     }
 
@@ -360,6 +363,18 @@ public class AppMenu {
             credService.update(cred); // actualiza la última sesión
         } else {
             System.out.println("❌ Contraseña incorrecta.");
+        }
+    }
+
+    private void demoRollbackMenu() throws SQLException {
+        System.out.println("=== DEMO ROLLBACK (error simulado) ===");
+        System.out.println("Antes de la demo, verificá en MySQL cuántos usuarios tenés.");
+
+        try {
+            usuarioService.demoRollback();
+            System.out.println("Después de la demo, volvés a MySQL y comprobás que NO hay usuarios nuevos.");
+        } catch (SQLException e) {
+            System.out.println("La operación falló y se revirtió completamente.");
         }
     }
 

@@ -40,4 +40,16 @@ public interface UsuarioService extends GenericService<Usuario, Long> {
      * @throws SQLException si ocurre un error de base de datos
      */
     Long createUsuarioConCredencial(Usuario usuario) throws SQLException;
+    
+    /**
+     * Demo de rollback: crea un usuario de prueba y fuerza un error
+     * para demostrar que la transacción se revierte.
+     *
+     * @throws SQLException si ocurre un error simulado
+     */
+    void demoRollback() throws SQLException;
+    
+    
+    
+    
 }
