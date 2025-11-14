@@ -56,23 +56,24 @@ public class AppMenu {
     }
 
     private void mostrarMenu() {
-        System.out.println("========= MENU TFI (Usuario / Credencial) =========");
-        System.out.println(" 1) Crear Usuario (simple)");
-        System.out.println(" 2) Listar Usuarios");
-        System.out.println(" 3) Ver Usuario por ID");
-        System.out.println(" 4) Buscar Usuario por USERNAME");
-        System.out.println(" 5) Buscar Usuario por EMAIL");
-        System.out.println(" 6) Actualizar Usuario");
-        System.out.println(" 7) Eliminar Usuario (baja logica)");
-        System.out.println(" 8) Eliminar Usuario (baja fisica)");
-        System.out.println(" 9) Crear Usuario + Credencial (TRANSACCIÓN)");
-        System.out.println("10) Crear Credencial para Usuario existente");
-        System.out.println("11) Ver Credencial por ID");
-        System.out.println("12) Ver Credencial por usuarioId");
-        System.out.println("13) Actualizar password (stored procedure)");
-        System.out.println("14) Login de Usuario (validar password)");
-        System.out.println(" 0) Salir");
-    }
+    System.out.println("========= MENÚ TFI (Usuario / Credencial) =========");
+    System.out.println(" 1) Crear Usuario (simple)");
+    System.out.println(" 2) Listar Usuarios");
+    System.out.println(" 3) Ver Usuario por ID");
+    System.out.println(" 4) Buscar Usuario por NOMBRE DE USUARIO");
+    System.out.println(" 5) Buscar Usuario por EMAIL");
+    System.out.println(" 6) Actualizar Usuario");
+    System.out.println(" 7) Eliminar Usuario (baja lógica)");
+    System.out.println(" 8) Eliminar Usuario (baja física)");
+    System.out.println(" 9) Crear Usuario + Credencial (TRANSACCIÓN)");
+    System.out.println("10) Crear Credencial para Usuario existente");
+    System.out.println("11) Ver Credencial por ID");
+    System.out.println("12) Ver Credencial por usuarioId");
+    System.out.println("13) Actualizar contraseña (stored procedure)");
+    System.out.println("14) Login de Usuario (validar contraseña)");
+    System.out.println(" 0) Salir");
+}
+
 
     // ===================== USUARIO =====================
 

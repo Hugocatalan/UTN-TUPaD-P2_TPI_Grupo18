@@ -362,4 +362,31 @@ Email: juan.perez@mail.com
 Estado (ACTIVO/INACTIVO): activo
 ```
 
+#### 2. Listar Usuarios
+- Muestra todos los usuarios 
+
+### 3. Ver Usuario por ID
+- Busca un usuario por su ID (se puede ver en listar, la misma es AUTOINCREMENT)
+
+- Ejemplo:
+
+'''
+Opcion: 3
+
+Conectado correctamente a la base de datos.
+Usuario{idUsuario=1, username='matias.carro', email='matias.carro@mail.com', activo=true, estado=ACTIVO}
+'''
+
+### 4. Buscar Usuario por NOMBRE DE USUARIO
+
+- Busca por username
+
+Ejemplo:
+
+'''
+Opcion: 4
+Username: matias.carro
+✅ Conectado correctamente a la base de datos.
+Usuario{idUsuario=1, username='matias.carro', email='matias.carro@mail.com', activo=true, estado=ACTIVO}
+'''
 
