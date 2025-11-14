@@ -323,8 +323,9 @@ src/main/resources y modificar el archivo "db.properties"
 
 Y modificar el archivo de la misma manera
 
+---
 
-##Ejecución
+## Ejecución
 
 ### Opción 1: Desde IDE
 ```
@@ -345,6 +346,8 @@ O si ya lo compilaste, podes ejecutarlo solamente:
 
 - Nota: Este script permite que funcione correctamente UTF - 8
 
+--- 
+
 #### O desde la consola:
 
 En la carpeta root: 
@@ -364,6 +367,7 @@ y ejecutar:
 
 - Nota: Esta version no corre correctamente con UTF - 8
 
+---
 
 
 ## Uso del Sistema
