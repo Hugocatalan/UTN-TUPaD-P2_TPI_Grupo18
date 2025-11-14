@@ -6,7 +6,6 @@ import integradorfinal.programacion2.entities.CredencialAcceso;
 import integradorfinal.programacion2.entities.Estado;
 import integradorfinal.programacion2.exceptions.DataAccessException;
 
-
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,22 +14,36 @@ import java.util.Optional;
 
 /**
  * Implementación JDBC del DAO de CredencialAcceso.
+ * 
+ * En esta clase concentro toda la lógica de acceso a datos para la tabla
+ * credencial_acceso: creación, lectura, actualización y borrado.
+ * 
+ * La estructura la separé en dos partes:
+ * - Métodos CRUD que se manejan solos (piden su propia Connection).
+ * - Métodos CRUD que reciben una Connection externa (para trabajar en transacciones).
  */
 public class CredencialAccesoDaoImpl implements CredencialAccesoDao {
 
     // ======================================================
     // CRUD BÁSICO (maneja su propia Connection)
     // ======================================================
-  @Override
-public Long create(CredencialAcceso c) {
-    try (Connection conn = DatabaseConnection.getConnection()) {
-        return create(c, conn);
-    } catch (SQLException e) {
-        throw new DataAccessException("Error al crear credencial de usuario con ID=" + c.getUsuarioId(), e);
+
+    /**
+     * Creo una credencial nueva usando una Connection propia.
+     * Si algo falla a nivel SQL, lo envuelvo en un DataAccessException.
+     */
+    @Override
+    public Long create(CredencialAcceso c) {
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            return create(c, conn);
+        } catch (SQLException e) {
+            throw new DataAccessException("Error al crear credencial de usuario con ID=" + c.getUsuarioId(), e);
+        }
     }
-}
 
-
+    /**
+     * Busco una credencial por su ID usando una Connection propia.
+     */
     @Override
     public Optional<CredencialAcceso> findById(Long id) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -38,6 +51,10 @@ public Long create(CredencialAcceso c) {
         }
     }
 
+    /**
+     * Devuelvo todas las credenciales no eliminadas lógicamente,
+     * usando su propia Connection.
+     */
     @Override
     public List<CredencialAcceso> findAll() throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -45,6 +62,9 @@ public Long create(CredencialAcceso c) {
         }
     }
 
+    /**
+     * Actualizo una credencial completa usando una Connection propia.
+     */
     @Override
     public void update(CredencialAcceso c) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -52,6 +72,10 @@ public Long create(CredencialAcceso c) {
         }
     }
 
+    /**
+     * Baja lógica de una credencial (marco eliminado=TRUE)
+     * usando una Connection propia.
+     */
     @Override
     public void softDeleteById(Long id) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -59,6 +83,9 @@ public Long create(CredencialAcceso c) {
         }
     }
 
+    /**
+     * Baja física de una credencial (DELETE) usando una Connection propia.
+     */
     @Override
     public void deleteById(Long id) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -69,6 +96,11 @@ public Long create(CredencialAcceso c) {
     // ======================================================
     // CRUD con Connection externa (para transacciones)
     // ======================================================
+
+    /**
+     * Inserto una credencial recibiendo la Connection desde afuera.
+     * Esto me permite usarla dentro de una transacción compartida con Usuario.
+     */
     @Override
     public Long create(CredencialAcceso c, Connection conn) throws SQLException {
         final String sql = """
@@ -76,6 +108,7 @@ public Long create(CredencialAcceso c) {
               (eliminado, usuario_id, estado, ultima_sesion, hash_password, salt, ultimo_cambio, requiere_reset)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """;
+
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setBoolean(1, c.isEliminado());
             ps.setLong(2, c.getUsuarioId());
@@ -87,6 +120,7 @@ public Long create(CredencialAcceso c) {
             ps.setBoolean(8, c.isRequiereReset());
             ps.executeUpdate();
 
+            // Recupero el ID autogenerado por la base y lo seteo en el objeto.
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     long id = rs.getLong(1);
@@ -98,6 +132,10 @@ public Long create(CredencialAcceso c) {
         return null;
     }
 
+    /**
+     * Busco una credencial por ID usando una Connection externa.
+     * Solo traigo registros que no estén marcados como eliminados.
+     */
     @Override
     public Optional<CredencialAcceso> findById(Long id, Connection conn) throws SQLException {
         final String sql = "SELECT * FROM credencial_acceso WHERE id_credencial = ? AND eliminado = FALSE";
@@ -110,6 +148,10 @@ public Long create(CredencialAcceso c) {
         return Optional.empty();
     }
 
+    /**
+     * Devuelvo todas las credenciales usando una Connection externa.
+     * Solo incluyo las que no estén eliminadas lógicamente.
+     */
     @Override
     public List<CredencialAcceso> findAll(Connection conn) throws SQLException {
         final String sql = "SELECT * FROM credencial_acceso WHERE eliminado = FALSE ORDER BY id_credencial";
@@ -121,6 +163,9 @@ public Long create(CredencialAcceso c) {
         return out;
     }
 
+    /**
+     * Actualizo todos los campos de una credencial, usando una Connection externa.
+     */
     @Override
     public void update(CredencialAcceso c, Connection conn) throws SQLException {
         final String sql = """
@@ -128,6 +173,7 @@ public Long create(CredencialAcceso c) {
                SET eliminado=?, usuario_id=?, estado=?, ultima_sesion=?, hash_password=?, salt=?, ultimo_cambio=?, requiere_reset=?
              WHERE id_credencial=?
             """;
+
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setBoolean(1, c.isEliminado());
             ps.setLong(2, c.getUsuarioId());
@@ -142,6 +188,10 @@ public Long create(CredencialAcceso c) {
         }
     }
 
+    /**
+     * Baja lógica de credencial usando una Connection externa.
+     * Solo marco eliminado = TRUE.
+     */
     @Override
     public void softDeleteById(Long id, Connection conn) throws SQLException {
         final String sql = "UPDATE credencial_acceso SET eliminado = TRUE WHERE id_credencial = ?";
@@ -151,6 +201,9 @@ public Long create(CredencialAcceso c) {
         }
     }
 
+    /**
+     * Baja física de credencial usando una Connection externa.
+     */
     @Override
     public void deleteById(Long id, Connection conn) throws SQLException {
         final String sql = "DELETE FROM credencial_acceso WHERE id_credencial = ?";
@@ -163,11 +216,17 @@ public Long create(CredencialAcceso c) {
     // ======================================================
     // MÉTODOS ESPECÍFICOS
     // ======================================================
+
+    /**
+     * Busco la credencial asociada a un usuario, filtrando por usuario_id.
+     * Solo traigo la credencial si no está eliminada lógicamente.
+     */
     @Override
     public Optional<CredencialAcceso> findByUsuarioId(Long usuarioId) throws SQLException {
         final String sql = "SELECT * FROM credencial_acceso WHERE usuario_id = ? AND eliminado = FALSE";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setLong(1, usuarioId);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) return Optional.of(mapRow(rs));
@@ -176,6 +235,12 @@ public Long create(CredencialAcceso c) {
         return Optional.empty();
     }
 
+    /**
+     * Actualizo el password de forma "segura" llamando a un stored procedure:
+     * sp_actualizar_password_seguro.
+     * 
+     * Este método pide su propia Connection.
+     */
     @Override
     public void updatePasswordSeguro(Long usuarioId, String nuevoHash, String nuevoSalt) throws SQLException {
         // Llama al procedimiento almacenado: sp_actualizar_password_seguro
@@ -184,7 +249,10 @@ public Long create(CredencialAcceso c) {
         }
     }
 
-    // Sobrecarga para uso transaccional
+    /**
+     * Versión sobrecargada que recibe la Connection desde afuera,
+     * para poder ser usada dentro de una transacción más grande.
+     */
     public void updatePasswordSeguro(Long usuarioId, String nuevoHash, String nuevoSalt, Connection conn) throws SQLException {
         try (CallableStatement cs = conn.prepareCall("{ call sp_actualizar_password_seguro(?, ?, ?) }")) {
             cs.setLong(1, usuarioId);
@@ -197,6 +265,12 @@ public Long create(CredencialAcceso c) {
     // ======================================================
     // MÉTODOS AUXILIARES
     // ======================================================
+
+    /**
+     * Convierto una fila del ResultSet en un objeto CredencialAcceso.
+     * 
+     * Acá mapeo cada columna de la tabla a su campo correspondiente en la entidad.
+     */
     private CredencialAcceso mapRow(ResultSet rs) throws SQLException {
         CredencialAcceso c = new CredencialAcceso();
         c.setIdCredencial(rs.getLong("id_credencial"));
@@ -217,6 +291,10 @@ public Long create(CredencialAcceso c) {
         return c;
     }
 
+    /**
+     * Helper para setear un LocalDateTime en un PreparedStatement,
+     * permitiendo también valores nulos.
+     */
     private void setNullableTimestamp(PreparedStatement ps, int index, LocalDateTime ldt) throws SQLException {
         if (ldt == null) {
             ps.setNull(index, Types.TIMESTAMP);

@@ -390,6 +390,7 @@ y ejecutar:
 12) Ver Datos de Credencial por ID (de la credencial)
 13) Actualizar password (stored procedure)
 14) Login de Usuario (validar password)
+15) PRUEBA DE ROLLBACK (Solo para desmotracion)
  0) Salir
 ```
 
@@ -604,6 +605,16 @@ Password: 12345
 ✅ Login exitoso. Bienvenido, Gabriel!
 ✅ Conectado correctamente a la base de datos.
 ```
+
+### Opcion: 15
+=== DEMO ROLLBACK (error simulado) ===
+Antes de la demo, verificá en MySQL cuántos usuarios tenés.
+>>> Iniciando demo de rollback con error simulado...
+✅ Conexión establecida correctamente con la base de datos.
+Usuario demo creado con ID (sin commit): 62
+>>> Se ejecutó ROLLBACK correctamente.
+🔒 Conexión cerrada correctamente.
+La operación falló y se revirtió completamente.
 
 
 ### Estructura en Capas
