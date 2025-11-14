@@ -341,8 +341,8 @@ CREATE INDEX idx_credencial_estado ON credencial_acceso(estado);
 | 8 | Eliminar Usuario (baja física) | `bajaFisicaUsuario()` | HU-008 |
 | 9 | Crear Usuario + Credencial (Tx) | `crearUsuarioConCredencialTx()` | HU-009 |
 | 10 | Crear Credencial para Usuario | `crearCredencialParaUsuario()` | HU-010 |
-| 11 | Ver Credencial por ID | `verCredencialPorId()` | - |
-| 12 | Ver Credencial por Usuario ID | `verCredencialPorUsuarioId()` | - |
+| 11 | Ver Credencial por Usuario ID | `verCredencialPorUsuarioId()` | - |
+| 12 | Ver Datos de Credencial por ID (de la credencial) | `verCredencialPorId()` | - |
 | 13 | Actualizar Password Seguro | `actualizarPasswordSeguro()` | - |
 | 14 | Login de Usuario | `loginUsuario()` | HU-011 |
 | 0 | Salir | `System.exit()` | - |
