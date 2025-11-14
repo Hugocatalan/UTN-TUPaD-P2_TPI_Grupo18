@@ -1,0 +1,71 @@
+<diagram program="umletino" version="15.1"><zoom_level>13</zoom_level><help_text>Space for diagram notes
+m2=1</help_text><element><id>UMLClass</id><coordinates><x>130</x><y>156</y><w>403</w><h>689</h></coordinates><panel_attributes>Usuario
+--
+- idUsuario: Long
+- eliminado: boolean
+- username: String
+- nombre: String
+- apellido: String
+- email: String
+- activo: boolean
+- fechaRegistro: LocalDateTime
+- estado: Estado
+--
++ Usuario()
++ Usuario(Long, boolean. String, String, String, 
+String, LocalDateTime, boolean, Estado)
++ getIdUsuario():Long
++ isEliminado(): boolean
++ getUserName():String
++ getNombre(): String
++ getApellido(): String
++ getEmail(): String
++ getFechaRegistro(): LocalDateTiem
++ isActivo(): boolean
++ getEstado: Estado
++ getCredencial(): CredencialAcceso
++ setIdUsuario(Long): void
++ setEliminado(boolean): void
++ setUsername(String): void
++ setNombre(String): void
++ setApellido(String): void
++ setEmail(String): void
++setFechaRegistro(LocalDateTime):void
++ setActivo(boolean): void
++ setEstado(Estado):void
++ setCredencial(CredencialAcceso): void
++ toString()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>741</x><y>156</y><w>455</w><h>663</h></coordinates><panel_attributes>CredencialAcceso
+--
+- idCredencial: Long
+- eliminado: boolean
+- usuarioId: String
+- estado: Estado
+- ultimaSesion: LocalDateTime
+- hashPassword: String
+- salt: String
+- ultimoCambio: LocalDateTime
+- requiereReset: boolean
+--
++ CredencialAcceso()
++ CredencialAcceso(Long, boolean, Long, Estado, 
+   LocalDateTime, String, String, LocalDateTime, boolean) 
++ getCredencial(): Long
++ isEliminado(): boolean
++ getUsuarioId(): String
++ getEstado(): Estado
++ getUltimaSesion(): LocalDateTime
++ getHashPassword(): String
++ getSalt(): String
++ getUltimoCambio():LocalDateTime
++ getRequiereReset(): boolean
++ setIdCredencial(Long): void
++ setEliminado(boolean): void
++ setUsuarioId(Long): void
++ setEstado(Estado): void
++ bsetUltimaSesion(LocalDateTime): void
++ setHashPassword(String): void
++ setSalt(String): void
++ setUltimoCambio(LocalDateTime): void
++ setRequiereReset(boolean): void
++ toString()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>468</y><w>247</w><h>52</h></coordinates><panel_attributes>lt=&lt;-
+m1=1</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element></diagram>
