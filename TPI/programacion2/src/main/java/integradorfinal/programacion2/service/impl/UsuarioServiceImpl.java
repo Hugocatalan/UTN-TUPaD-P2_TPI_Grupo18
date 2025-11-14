@@ -140,7 +140,36 @@ public class UsuarioServiceImpl implements UsuarioService {
         cred.setSalt(salt);
         cred.setHashPassword(hash);
 
-        // ===================================
+        /**
+         * Crea un nuevo {@link Usuario} junto con su {@link CredencialAcceso}
+         * en una única transacción.
+         *
+         * <p>
+         * Este método garantiza la atomicidad de la operación: se inserta
+         * primero el usuario en la base de datos, se obtiene su identificador
+         * generado y luego se inserta la credencial asociada con dicho ID como
+         * clave foránea. Si ambas operaciones se completan correctamente, se
+         * confirma la transacción con {@code commit()}. En caso de cualquier
+         * error, se ejecuta un {@code rollback()} para revertir todos los
+         * cambios y evitar datos inconsistentes.</p>
+         *
+         * <p>
+         * El autocommit de la conexión se desactiva temporalmente al inicio de
+         * la transacción y se restaura en el bloque {@code finally}, asegurando
+         * que la conexión vuelva a su estado original al finalizar la
+         * operación.</p>
+         *
+         * @param usuario objeto {@link Usuario} a persistir en la base de datos
+         * @param cred objeto {@link CredencialAcceso} asociado al usuario, con
+         * hash de contraseña y salt
+         * @return el identificador generado para el nuevo usuario
+         * @throws SQLException si ocurre un error en la inserción de usuario o
+         * credencial, o en las operaciones de commit/rollback
+         *
+         * @see java.sql.Connection#setAutoCommit(boolean)
+         * @see java.sql.Connection#commit()
+         * @see java.sql.Connection#rollback()
+         */
         Connection conn = null;
         boolean prevAutoCommit = true;
 
@@ -182,8 +211,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     /**
-     * DEMOSTRACION ROLLBACK 
-     * Demostración de una transacción con rollbackforzado.
+     * DEMOSTRACION ROLLBACK Demostración de una transacción con
+     * rollbackforzado.
      *
      * <p>
      * Este método no tiene sirve como prueba para mostrar cómo funciona el
